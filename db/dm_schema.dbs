@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="donation_manager" id="Project_4f95088" template="Default" database="MySql" >
+	<schema name="donation_manager" catalogname="donation_manager" >
+		<table name="campaigns" >
+			<column name="id" type="int" length="10" decimal="0" jt="4" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="CampaignName" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="Description" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="StartDate" type="date" length="10" decimal="0" jt="91" />
+			<column name="OrgId" type="int" length="10" decimal="0" jt="4" mandatory="y" unsigned="y" />
+			<index name="pk_campaigns" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_campaigns" unique="NORMAL" >
+				<column name="OrgId" />
+			</index>
+			<fk name="fk_campaigns" to_schema="donation_manager" to_table="org" >
+				<fk_column name="OrgId" pk="id" />
+			</fk>
+		</table>
+		<table name="donations" >
+			<column name="id" type="int" length="10" decimal="0" jt="4" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="CampaignId" type="int" length="10" decimal="0" jt="4" mandatory="y" unsigned="y" />
+			<column name="Amount" type="decimal" length="64" decimal="0" jt="3" />
+			<column name="Date" type="date" length="10" decimal="0" jt="91" />
+			<column name="Notes" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DonorId" type="int" length="10" decimal="0" jt="4" mandatory="y" unsigned="y" />
+			<index name="pk_donations" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_donations" unique="NORMAL" >
+				<column name="CampaignId" />
+			</index>
+			<index name="idx_donations_0" unique="NORMAL" >
+				<column name="DonorId" />
+			</index>
+			<fk name="fk_donations" to_schema="donation_manager" to_table="campaigns" >
+				<fk_column name="CampaignId" pk="id" />
+			</fk>
+			<fk name="fk_donations_0" to_schema="donation_manager" to_table="donors" >
+				<fk_column name="DonorId" pk="id" />
+			</fk>
+		</table>
+		<table name="donors" >
+			<column name="id" type="int" length="10" decimal="0" jt="4" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="Name" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="FirstName" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="MiddleName" type="char" length="1" decimal="0" jt="1" />
+			<column name="LastName" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="Email" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="Phone" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="Address" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="Address_Street_1" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="Address_Street_2" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="City" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="State" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="Zip" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="Country" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="Occupation" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="pk_donors" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="org" >
+			<column name="id" type="int" length="10" decimal="0" jt="4" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="Name" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="pk_org" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+	</schema>
+	<connector name="donation_manager" database="MySql" driver_class="com.mysql.jdbc.Driver" driver_jar="mysql-connector-java-5.1.40-bin.jar" driver_desc="Standard" host="localhost" port="3306" user="root" />
+	<layout name="Default Layout" id="Layout_35152570" joined_routing="y" show_relation="columns" >
+		<entity schema="donation_manager" name="donations" color="bfd4f5" x="48" y="64" />
+		<entity schema="donation_manager" name="campaigns" color="bfd4f5" x="320" y="48" />
+		<entity schema="donation_manager" name="donors" color="bfd4f5" x="320" y="256" />
+		<entity schema="donation_manager" name="org" color="bfd4f5" x="528" y="112" />
+	</layout>
+	<layout name="Sample Layout with Groups" id="Layout_34789e6a" joined_routing="y" show_relation="columns" >
+		<entity schema="donation_manager" name="campaigns" color="bfd4f5" x="256" y="192" />
+		<entity schema="donation_manager" name="donations" color="bfd4f5" x="448" y="192" />
+		<entity schema="donation_manager" name="donors" color="bfd4f5" x="48" y="384" />
+		<entity schema="donation_manager" name="org" color="bfd4f5" x="256" y="384" />
+		<callout x="256" y="80" pointer="NO" >
+			<comment><![CDATA[You may create multiple layouts with the same or different tables.
+Layouts will be saved to project file. 
+Double-click any column, foreign key or table headers to edit.]]></comment>
+		</callout>
+		<group name="campaigns" color="ecf0f7" >
+			<entity schema="donation_manager" name="campaigns" />
+			<entity schema="donation_manager" name="donations" />
+			<entity schema="donation_manager" name="donors" />
+			<entity schema="donation_manager" name="org" />
+		</group>
+	</layout>
+	<layout name="Sample Layout with Relational Data Browse" id="Layout_5c2073b" joined_routing="y" show_relation="columns" >
+		<entity schema="donation_manager" name="campaigns" color="bfd4f5" x="256" y="160" />
+		<entity schema="donation_manager" name="donations" color="bfd4f5" x="448" y="160" />
+		<entity schema="donation_manager" name="donors" color="bfd4f5" x="48" y="352" />
+		<entity schema="donation_manager" name="org" color="bfd4f5" x="256" y="352" />
+		<callout x="256" y="48" pointer="NO" >
+			<comment><![CDATA[Use the Relational Data Browse for exploring data from multiple tables at a time.
+Tables should be bind by foreign keys - if they are not you can create VIRTUAL foreign keys in the layout. 
+Virtual foreign keys will be saved to project file.
+ 
+Descend into children tables by pressing the foreign key arrow icon near title.
+Right-click column headers in browse tables to set filters.]]></comment>
+		</callout>
+		<browser id="Browse_24ce66e8" name="Sample Relational Data Browse" confirm_updates="y" >
+			<browse_table schema="donation_manager" entity="campaigns" x="10" y="10" width="400" height="300" />
+		</browser>
+	</layout>
+</project>
