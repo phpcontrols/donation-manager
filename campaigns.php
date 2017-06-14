@@ -23,7 +23,7 @@ $dgCamp = new C_DataGrid(
 	"id", "campaigns");
 $dgCamp->set_col_hidden('id')->set_col_hidden('CampaignId');
 $dgCamp->enable_edit();
-$dgCamp->set_dimension('1000px');
+$dgCamp->enable_autowidth(true);
 //$dgCamp->enable_autowidth(true);
 $dgCamp->enable_global_search(true);
 //$dgCamp->set_col_edittype('OrgId', 'select', "select id, Name from org");

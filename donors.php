@@ -35,7 +35,7 @@ $dgDonors -> set_col_currency("TotalDonation", "$")->set_col_readonly("TotalDona
 //$dgDonors -> set_col_currency("LargestDonation", "$")->set_col_readonly("LargestDonation", true);
 //$dgDonors -> set_col_currency("SmallestDonation", "$")->set_col_readonly("SmallestDonation", true);
 $dgDonors->enable_edit();
-$dgDonors->set_dimension('1000px');
+$dgDonors->enable_autowidth(true);
 
 // Donations detail grid
 $dgDonations = new C_DataGrid("SELECT * FROM donations", "id", "donations");
