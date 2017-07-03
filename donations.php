@@ -18,7 +18,7 @@ $dgDonations->set_col_hidden('id')->set_caption('Donations');
 $dgDonations->enable_edit();
 $dgDonations->enable_autowidth(true);
 $dgDonations->set_col_edittype('CampaignId', 'select', 'select id, CampaignName from campaigns');
-$dgDonations->set_col_edittype('DonorId', 'select', "select id, concat(FirstName, ' ', LastName) from Donors");
+$dgDonations->set_col_edittype('DonorId', 'select', "select id, concat(FirstName, ' ', LastName) from donors");
 //$dgDonations->enable_global_search(true);
 $dgDonations->set_col_currency("Amount", "$");
 // $dgDonations->enable_dnd_grouping(true);

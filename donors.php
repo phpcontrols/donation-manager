@@ -43,7 +43,7 @@ $dgDonations->set_col_hidden('id')->set_caption('Donations');
 $dgDonations->enable_edit();
 $dgDonations->set_dimension('1000px');
 $dgDonations->set_col_edittype('CampaignId', 'select', 'select id, CampaignName from campaigns');
-$dgDonations->set_col_edittype('DonorId', 'select', "select id, concat(FirstName, ' ', LastName) from Donors");
+$dgDonations->set_col_edittype('DonorId', 'select', "select id, concat(FirstName, ' ', LastName) from donors");
 $dgDonations->set_col_currency("Amount", "$");
 
 $dgDonors -> set_masterdetail($dgDonations, 'DonorId', 'id');
